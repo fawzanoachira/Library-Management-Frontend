@@ -1,1 +1,35 @@
-<p>create-user works!</p>
+<h2>Create User</h2>
+
+<form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+    <div>
+        <label>Name</label><br />
+        <input type="text" formControlName="name" />
+        <div *ngIf="userForm.get('name')?.touched && userForm.get('name')?.invalid">
+            Name is required
+        </div>
+    </div>
+
+    <br />
+
+    <div>
+        <label>Email</label><br />
+        <input type="email" formControlName="email" />
+        <div *ngIf="userForm.get('email')?.touched && userForm.get('email')?.invalid">
+            Valid email is required
+        </div>
+    </div>
+
+    <br />
+
+    <div>
+        <label>Password</label><br />
+        <input type="password" formControlName="password">
+        <div *ngIf="userForm.get('password')?.touched && userForm.get('email')?.invalid">
+            Password is required
+        </div>
+    </div>
+
+    <br />
+
+    <button type="submit">Create User</button>
+</form>
