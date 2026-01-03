@@ -16,3 +16,8 @@
 <a routerLink="/books">📚 View Books</a>
 |
 <a routerLink="/books/create">➕ Create Book</a>
+
+<a [routerLink]="['/shelves/create']"
+   [queryParams]="{ userId: user.id }">
+   ➕ Create Shelf
+</a>

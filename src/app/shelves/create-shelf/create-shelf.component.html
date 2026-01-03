@@ -1,0 +1,16 @@
+<h2>Create Shelf</h2>
+
+<form [formGroup]="shelfForm" (ngSubmit)="createShelf()">
+
+    <input placeholder="Shelf name" formControlName="name" />
+
+    <div *ngIf="shelfForm.get('name')?.touched && shelfForm.get('name')?.invalid">
+        Shelf name is required
+    </div>
+
+    <br />
+
+    <button type="submit">Create Shelf</button>
+</form>
+
+<p *ngIf="message">{{ message }}</p>
