@@ -7,6 +7,7 @@ import { UserDetailComponent } from './user-detail/user-detail.component';
 import { EditUserComponent } from './edit-user/edit-user.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { GetUserComponent } from './get-user/get-user.component';
+import { UserFormComponent } from './user-form/user-form.component';
 
 
 @NgModule({
@@ -15,6 +16,7 @@ import { GetUserComponent } from './get-user/get-user.component';
     CreateUserComponent,
     UserDetailComponent,
     EditUserComponent,
+    UserFormComponent,
   ],
   imports: [
     CommonModule,

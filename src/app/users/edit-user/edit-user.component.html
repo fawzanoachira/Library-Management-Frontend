@@ -4,42 +4,6 @@
     {{ errorMessage }}
 </div>
 
-<div *ngIf="successMessage" style="color: green;">
-    {{ successMessage }}
-</div>
-
-<form [formGroup]="userForm" (ngSubmit)="onSubmit()" *ngIf="userForm">
-
-    <div>
-        <label>Email</label><br />
-        <input type="email" formControlName="email" />
-        <div *ngIf="userForm.get('email')?.touched && userForm.get('email')?.invalid">
-            Valid email required
-        </div>
-    </div>
-
-    <br />
-
-    <div>
-        <label>Name</label><br />
-        <input type="text" formControlName="name" />
-        <div *ngIf="userForm.get('name')?.touched && userForm.get('name')?.invalid">
-            Name is required
-        </div>
-    </div>
-
-    <br />
-
-    <div>
-        <label>Password</label><br />
-        <input type="password" formControlName="passwordHashed" />
-        <div *ngIf="userForm.get('passwordHashed')?.touched 
-                && userForm.get('passwordHashed')?.invalid">
-            Password is required
-        </div>
-    </div>
-
-    <br />
-
-    <button type="submit">Update User</button>
-</form>
+<app-user-form *ngIf="initialData" [initialData]="initialData" [submitLabel]="'Update User'"
+    (formSubmit)="updateUser($event)">
+</app-user-form>

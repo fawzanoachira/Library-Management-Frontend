@@ -8,41 +8,24 @@ import { UserService } from '../user.service';
   styleUrls: ['./create-user.component.css']
 })
 export class CreateUserComponent implements OnInit {
-  userForm!: FormGroup;
   errorMessage = '';
   successMessage = '';
 
-  constructor(
-    private fb: FormBuilder,
-    private userService: UserService) { }
-
+  constructor(private userService: UserService) { }
   ngOnInit(): void {
-    this.userForm = this.fb.group({
-      name: ["", Validators.required],
-      email: ["", [Validators.required, Validators.email]],
-      passwordHashed: ["", Validators.required]
-    });
+    throw new Error('Method not implemented.');
   }
 
-  onSubmit(): void {
-    if (this.userForm.invalid) {
-      this.userForm.markAllAsTouched();
-      return;
-    }
-
-    console.log("Form Value", this.userForm.value);
-
-    this.userService.createUser(this.userForm.value).subscribe({
-      next: (response) => {
-        this.successMessage = response.msg;
+  createUser(formData: any): void {
+    this.userService.createUser(formData).subscribe({
+      next: (res: any) => {
+        this.successMessage = res.msg;
         this.errorMessage = '';
-        this.userForm.reset();
       },
       error: (err) => {
         this.successMessage = '';
-        this.errorMessage = err?.error?.msg || 'Something went wrong';
+        this.errorMessage = err?.error?.msg || 'Create failed';
       }
     });
-
   }
 }

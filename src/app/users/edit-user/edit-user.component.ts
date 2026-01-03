@@ -13,6 +13,7 @@ export class EditUserComponent implements OnInit {
   userId!: string;
   errorMessage = '';
   successMessage = '';
+  initialData: any;
 
   constructor(
     private route: ActivatedRoute,
@@ -21,60 +22,38 @@ export class EditUserComponent implements OnInit {
     private router: Router
   ) { }
 
+
   ngOnInit(): void {
-    const email = this.route.snapshot.paramMap.get('email');
+    const email = this.route.snapshot.paramMap.get('email')!;
 
-    if (!email) {
-      this.errorMessage = 'Invalid user';
-      return;
-    }
-
-    this.userForm = this.fb.group({
-      email: ['', [Validators.required, Validators.email]],
-      name: ['', Validators.required],
-      passwordHashed: ['', Validators.required]
-    });
-
-    // Fetch user using existing get-user API
     this.userService.getUserByEmail(email).subscribe({
-      next: (response: any) => {
-        const user = response.data;
-        this.userId = user.id;
-
-        this.userForm.patchValue({
-          email: user.email,
-          name: user.name
-        });
+      next: (res: any) => {
+        this.userId = res.data.id;
+        this.initialData = {
+          name: res.data.name,
+          email: res.data.email
+        };
       },
       error: (err) => {
-        this.errorMessage = err?.error?.msg || 'User not found';
+        this.errorMessage = err?.error?.msg;
       }
     });
   }
 
-  onSubmit(): void {
-    if (this.userForm.invalid) {
-      this.userForm.markAllAsTouched();
-      return;
-    }
-
+  updateUser(formData: any): void {
     const payload = {
       id: this.userId,
-      ...this.userForm.value
+      ...formData
     };
 
     this.userService.updateUser(payload).subscribe({
-      next: (response: any) => {
-        this.successMessage = response.msg;
-        this.errorMessage = '';
-
-        // Redirect to updated user detail
-        this.router.navigate(['/users/email', response.data.email]);
+      next: (res: any) => {
+        this.router.navigate(['/users/email', res.data.email]);
       },
       error: (err) => {
-        this.successMessage = '';
-        this.errorMessage = err?.error?.msg || 'Update failed';
+        this.errorMessage = err?.error?.msg;
       }
     });
   }
+
 }
