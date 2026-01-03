@@ -1,0 +1,26 @@
+<h2>Find User</h2>
+
+<form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+    <div>
+        <label>Email</label><br />
+        <input type="email" formControlName="email" />
+        <div *ngIf="userForm.get('email')?.touched && userForm.get('email')?.invalid">
+            Enter a valid email
+        </div>
+    </div>
+
+    <br />
+
+    <button type="submit">Get User</button>
+</form>
+
+<div *ngIf="errorMessage" style="color: red; margin-top: 10px;">
+    {{ errorMessage }}
+</div>
+
+<hr />
+
+<p>
+    New user?
+    <a routerLink="/users/create">Create User</a>
+</p>

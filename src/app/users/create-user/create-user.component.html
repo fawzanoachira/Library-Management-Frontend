@@ -1,4 +1,11 @@
 <h2>Create User</h2>
+<div *ngIf="successMessage" style="color: green;">
+  {{ successMessage }}
+</div>
+
+<div *ngIf="errorMessage" style="color: red;">
+  {{ errorMessage }}
+</div>
 
 <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
     <div>
@@ -23,8 +30,8 @@
 
     <div>
         <label>Password</label><br />
-        <input type="password" formControlName="password">
-        <div *ngIf="userForm.get('password')?.touched && userForm.get('email')?.invalid">
+        <input type="password" formControlName="passwordHashed">
+        <div *ngIf="userForm.get('passwordHashed')?.touched && userForm.get('passwordHashed')?.invalid">
             Password is required
         </div>
     </div>
