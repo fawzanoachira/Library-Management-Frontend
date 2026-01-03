@@ -24,5 +24,8 @@ export class BookService {
   updateBook(book: any) {
     return this.http.patch(`${this.baseUrl}/update-book`, book);
   }
+  deleteBook(id: number) {
+    return this.http.delete(`${this.baseUrl}/delete-book/${id}`);
+  }
 
 }

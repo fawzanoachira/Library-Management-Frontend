@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { BookService } from '../books.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
@@ -17,7 +17,8 @@ export class BookDetailsComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private bookService: BookService,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -72,6 +73,23 @@ export class BookDetailsComponent implements OnInit {
       },
       error: (err) => {
         this.message = err?.error?.msg || 'Update failed';
+      }
+    });
+  }
+  deleteBook(): void {
+    const confirmDelete = confirm('Are you sure you want to delete this book?');
+
+    if (!confirmDelete) {
+      return;
+    }
+
+    this.bookService.deleteBook(this.book.id).subscribe({
+      next: (res: any) => {
+        alert(res.msg);
+        this.router.navigate(['/books']);
+      },
+      error: (err) => {
+        this.message = err?.error?.msg || 'Delete failed';
       }
     });
   }
