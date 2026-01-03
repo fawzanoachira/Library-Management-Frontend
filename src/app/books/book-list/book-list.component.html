@@ -1,1 +1,24 @@
-<p>book-list works!</p>
+<h2>Book List</h2>
+
+<p *ngIf="message">{{ message }}</p>
+
+<table border="1" cellpadding="8" *ngIf="books.length">
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Author</th>
+      <th>ISBN</th>
+      <th>Genre</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let book of books">
+      <td>{{ book.title }}</td>
+      <td>{{ book.author }}</td>
+      <td>{{ book.isbn }}</td>
+      <td>{{ book.genre }}</td>
+    </tr>
+  </tbody>
+</table>
+
+<p *ngIf="!books.length">No books found</p>

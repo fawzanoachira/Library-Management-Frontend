@@ -10,9 +10,12 @@ export class BookService {
 
   private baseUrl = 'http://localhost:8080/api/books';
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   createBook(book: Book): Observable<any> {
     return this.http.post(`${this.baseUrl}/create`, book);
+  }
+  getAllBooks() {
+    return this.http.get(`${this.baseUrl}/`);
   }
 }
