@@ -67,5 +67,22 @@ export class ShelfDetailComponent implements OnInit {
         }
       });
   }
+  removeBook(bookId: number) {
+    this.shelfService
+      .removeBookFromShelf(this.shelf.id, bookId)
+      .subscribe({
+        next: () => {
+          this.successMsg = 'Book removed from shelf';
+          this.errorMsg = '';
 
+          this.shelfService.getShelfById(this.shelf.id).subscribe(
+            (res: any) => this.shelf = res.data
+          );
+        },
+        error: () => {
+          this.errorMsg = 'Failed to remove book';
+          this.successMsg = '';
+        }
+      });
+  }
 }

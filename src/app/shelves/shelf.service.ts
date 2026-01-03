@@ -25,5 +25,13 @@ export class ShelfService {
       { bookId }
     );
   }
+  removeBookFromShelf(shelfId: number, bookId: number) {
+    return this.http.delete(
+      `${this.baseUrl}/${shelfId}/books/`,
+      {
+        body: { bookId }
+      }
+    );
+  }
 
 }
