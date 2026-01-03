@@ -21,5 +21,8 @@ export class BookService {
   getBookById(id: number) {
     return this.http.get(`${this.baseUrl}/get-book?id=${id}`);
   }
+  updateBook(book: any) {
+    return this.http.patch(`${this.baseUrl}/update-book`, book);
+  }
 
 }

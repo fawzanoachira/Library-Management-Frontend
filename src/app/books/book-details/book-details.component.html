@@ -2,10 +2,35 @@
 
 <p *ngIf="message">{{ message }}</p>
 
-<div *ngIf="book">
+<!-- VIEW MODE -->
+<div *ngIf="book && !editMode">
   <p><strong>Title:</strong> {{ book.title }}</p>
   <p><strong>Author:</strong> {{ book.author }}</p>
   <p><strong>ISBN:</strong> {{ book.isbn }}</p>
   <p><strong>Genre:</strong> {{ book.genre }}</p>
   <p><strong>Description:</strong> {{ book.description }}</p>
+
+  <button (click)="enableEdit()">Edit Book</button>
 </div>
+
+<!-- EDIT MODE -->
+<form *ngIf="editMode" [formGroup]="editForm" (ngSubmit)="updateBook()">
+
+  <input formControlName="title" placeholder="Title" />
+  <br />
+
+  <input formControlName="author" placeholder="Author" />
+  <br />
+
+  <input formControlName="isbn" placeholder="ISBN" />
+  <br />
+
+  <input formControlName="genre" placeholder="Genre" />
+  <br />
+
+  <textarea formControlName="description" placeholder="Description"></textarea>
+  <br />
+
+  <button type="submit">Save</button>
+  <button type="button" (click)="cancelEdit()">Cancel</button>
+</form>
