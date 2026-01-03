@@ -13,4 +13,8 @@ export class ShelfService {
   createShelf(payload: { name: string; userId: string }): Observable<any> {
     return this.http.post(`${this.baseUrl}/create`, payload);
   }
+  getAllShelves() {
+    return this.http.get(`${this.baseUrl}/`);
+  }
+
 }

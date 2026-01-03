@@ -1,1 +1,27 @@
-<p>shelf-list works!</p>
+<h2>Shelf List</h2>
+
+<p *ngIf="message">{{ message }}</p>
+
+<table border="1" cellpadding="8" *ngIf="shelves.length">
+    <thead>
+        <tr>
+            <th>Shelf Name</th>
+            <th>User</th>
+            <th>Email</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <tr *ngFor="let shelf of shelves">
+            <td>{{ shelf.name }}</td>
+            <td>{{ shelf.user?.name }}</td>
+            <td>{{ shelf.user?.email }}</td>
+            <td>
+                <a [routerLink]="['/shelves', shelf.id]">View</a>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<p *ngIf="!shelves.length">No shelves found</p>
