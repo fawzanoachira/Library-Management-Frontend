@@ -1,1 +1,26 @@
-<p>shelf-detail works!</p>
+<h2>Shelf Details</h2>
+
+<p *ngIf="message">{{ message }}</p>
+
+<div *ngIf="shelf">
+
+  <p><strong>Shelf Name:</strong> {{ shelf.name }}</p>
+
+  <h3>Owner</h3>
+  <p>{{ shelf.user?.name }} ({{ shelf.user?.email }})</p>
+
+  <h3>Books in Shelf</h3>
+
+  <div *ngIf="shelf.book?.length; else noBooks">
+    <ul>
+      <li *ngFor="let book of shelf.book">
+        {{ book.title }} by {{ book.author }}
+      </li>
+    </ul>
+  </div>
+
+  <ng-template #noBooks>
+    <p>No books in this shelf</p>
+  </ng-template>
+
+</div>

@@ -16,5 +16,8 @@ export class ShelfService {
   getAllShelves() {
     return this.http.get(`${this.baseUrl}/`);
   }
+  getShelfById(id: number) {
+    return this.http.get(`${this.baseUrl}/get-shelf?id=${id}`);
+  }
 
 }
