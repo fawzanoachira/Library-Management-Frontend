@@ -19,5 +19,11 @@ export class ShelfService {
   getShelfById(id: number) {
     return this.http.get(`${this.baseUrl}/get-shelf?id=${id}`);
   }
+  addBookToShelf(shelfId: number, bookId: number) {
+    return this.http.post(
+      `${this.baseUrl}/${shelfId}/books/`,
+      { bookId }
+    );
+  }
 
 }

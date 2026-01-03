@@ -5,7 +5,7 @@ import { ShelvesRoutingModule } from './shelves-routing.module';
 import { ShelfListComponent } from './shelf-list/shelf-list.component';
 import { CreateShelfComponent } from './create-shelf/create-shelf.component';
 import { ShelfDetailComponent } from './shelf-detail/shelf-detail.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -17,7 +17,8 @@ import { ReactiveFormsModule } from '@angular/forms';
   imports: [
     CommonModule,
     ShelvesRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FormsModule
   ]
 })
 export class ShelvesModule { }

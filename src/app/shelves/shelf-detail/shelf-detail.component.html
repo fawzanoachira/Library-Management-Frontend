@@ -4,23 +4,36 @@
 
 <div *ngIf="shelf">
 
-  <p><strong>Shelf Name:</strong> {{ shelf.name }}</p>
+    <p><strong>Shelf Name:</strong> {{ shelf.name }}</p>
 
-  <h3>Owner</h3>
-  <p>{{ shelf.user?.name }} ({{ shelf.user?.email }})</p>
+    <h3>Owner</h3>
+    <p>{{ shelf.user?.name }} ({{ shelf.user?.email }})</p>
 
-  <h3>Books in Shelf</h3>
+    <h3>Books in Shelf</h3>
 
-  <div *ngIf="shelf.book?.length; else noBooks">
-    <ul>
-      <li *ngFor="let book of shelf.book">
-        {{ book.title }} by {{ book.author }}
-      </li>
-    </ul>
-  </div>
+    <div *ngIf="shelf.book?.length; else noBooks">
+        <ul>
+            <li *ngFor="let book of shelf.book">
+                {{ book.title }} by {{ book.author }}
+            </li>
+        </ul>
+    </div>
 
-  <ng-template #noBooks>
-    <p>No books in this shelf</p>
-  </ng-template>
+    <ng-template #noBooks>
+        <p>No books in this shelf</p>
+    </ng-template>
 
 </div>
+<h3>Add Book to Shelf</h3>
+
+<p style="color: green" *ngIf="successMsg">{{ successMsg }}</p>
+<p style="color: red" *ngIf="errorMsg">{{ errorMsg }}</p>
+
+<select [(ngModel)]="selectedBookId">
+    <option value="">-- Select a Book --</option>
+    <option *ngFor="let book of books" [value]="book.id">
+        {{ book.title }} ({{ book.author }})
+    </option>
+</select>
+
+<button (click)="addBook()">Add Book</button>
