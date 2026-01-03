@@ -18,4 +18,8 @@ export class BookService {
   getAllBooks() {
     return this.http.get(`${this.baseUrl}/`);
   }
+  getBookById(id: number) {
+    return this.http.get(`${this.baseUrl}/get-book?id=${id}`);
+  }
+
 }
