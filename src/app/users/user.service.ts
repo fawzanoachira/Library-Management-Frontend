@@ -21,5 +21,8 @@ export class UserService {
       { params: { email } }
     );
   }
+  updateUser(payload: any) {
+    return this.http.put(`${this.BASE_URL}/update-user`, payload);
+  }
 
 }

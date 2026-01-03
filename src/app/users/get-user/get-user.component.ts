@@ -33,7 +33,7 @@ export class GetUserComponent {
     this.userService.getUserByEmail(email).subscribe({
       next: (response: any) => {
         const userId = response.data.id;
-        this.router.navigate(['/users', userId]);
+        this.router.navigate(['/users/email', email]);
       },
       error: (err) => {
         this.errorMessage = err?.error?.msg || 'User not found';

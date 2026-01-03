@@ -1,1 +1,13 @@
-<p>user-detail works!</p>
+<h2>User Details</h2>
+
+<div *ngIf="errorMessage" style="color: red;">
+  {{ errorMessage }}
+</div>
+
+<div *ngIf="user">
+  <p><strong>Name:</strong> {{ user.name }}</p>
+  <p><strong>Email:</strong> {{ user.email }}</p>
+  <p><strong>ID:</strong> {{ user.id }}</p>
+
+  <button (click)="editUser()">Edit User</button>
+</div>

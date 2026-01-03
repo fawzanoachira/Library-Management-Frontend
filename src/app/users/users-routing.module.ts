@@ -8,8 +8,8 @@ import { GetUserComponent } from './get-user/get-user.component';
 const routes: Routes = [
   { path: "get", component: GetUserComponent },
   { path: "create", component: CreateUserComponent },
-  { path: ":id/edit", component: EditUserComponent },
-  { path: ":id", component: UserDetailComponent }
+  { path: "email/:email", component: UserDetailComponent },
+  { path: "edit/:email", component: EditUserComponent }
 ];
 
 @NgModule({
