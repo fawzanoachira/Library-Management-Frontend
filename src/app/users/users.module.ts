@@ -8,6 +8,7 @@ import { EditUserComponent } from './edit-user/edit-user.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { GetUserComponent } from './get-user/get-user.component';
 import { UserFormComponent } from './user-form/user-form.component';
+import { BooksModule } from "src/app/books/books.module";
 
 
 @NgModule({
@@ -21,7 +22,8 @@ import { UserFormComponent } from './user-form/user-form.component';
   imports: [
     CommonModule,
     UsersRoutingModule,
-    ReactiveFormsModule
-  ]
+    ReactiveFormsModule,
+    BooksModule
+]
 })
 export class UsersModule { }

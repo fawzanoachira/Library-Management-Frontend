@@ -1,0 +1,28 @@
+<h4>Create Book</h4>
+
+<form [formGroup]="bookForm" (ngSubmit)="onSubmit()">
+
+  <input placeholder="Title" formControlName="title" />
+  <div *ngIf="bookForm.get('title')?.touched && bookForm.get('title')?.invalid">
+    Title is required
+  </div>
+
+  <br />
+
+  <input placeholder="Author" formControlName="author" />
+  <br />
+
+  <input placeholder="ISBN" formControlName="isbn" />
+  <br />
+
+  <input placeholder="Genre" formControlName="genre" />
+  <br />
+
+  <textarea placeholder="Description" formControlName="description"></textarea>
+  <br />
+
+  <button type="submit">Create Book</button>
+
+</form>
+
+<p *ngIf="message">{{ message }}</p>
