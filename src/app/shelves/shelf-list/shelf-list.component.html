@@ -1,27 +1,47 @@
-<h2>Shelf List</h2>
+<div class="container mt-5">
 
-<p *ngIf="message">{{ message }}</p>
+    <h2 class="text-center mb-4">Shelf List</h2>
 
-<table border="1" cellpadding="8" *ngIf="shelves.length">
-    <thead>
-        <tr>
-            <th>Shelf Name</th>
-            <th>User</th>
-            <th>Email</th>
-            <th>Actions</th>
-        </tr>
-    </thead>
+    <div *ngIf="message" class="alert alert-info text-center">
+        {{ message }}
+    </div>
 
-    <tbody>
-        <tr *ngFor="let shelf of shelves">
-            <td>{{ shelf.name }}</td>
-            <td>{{ shelf.user?.name }}</td>
-            <td>{{ shelf.user?.email }}</td>
-            <td>
-                <a [routerLink]="['/shelves', shelf.id]">View</a>
-            </td>
-        </tr>
-    </tbody>
-</table>
+    <div class="card shadow-sm">
+        <div class="card-body p-0">
 
-<p *ngIf="!shelves.length">No shelves found</p>
+            <div class="table-responsive" *ngIf="shelves.length; else noShelves">
+                <table class="table table-hover align-middle mb-0">
+                    <thead class="table-light">
+                        <tr>
+                            <th>Shelf Name</th>
+                            <th>User</th>
+                            <th>Email</th>
+                            <th class="text-center">Actions</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <tr *ngFor="let shelf of shelves">
+                            <td class="fw-semibold">{{ shelf.name }}</td>
+                            <td>{{ shelf.user?.name }}</td>
+                            <td>{{ shelf.user?.email }}</td>
+                            <td class="text-center">
+                                <a [routerLink]="['/shelves', shelf.id]" class="btn btn-sm btn-outline-primary">
+                                    View
+                                </a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <ng-template #noShelves>
+                <div class="text-center p-4 text-muted">
+                    No shelves found
+                </div>
+            </ng-template>
+
+        </div>
+    </div>
+
+</div>

@@ -1,16 +1,36 @@
-<h2>Create Shelf</h2>
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6 col-lg-5">
+            <div class="card shadow-sm">
+                <div class="card-body">
 
-<form [formGroup]="shelfForm" (ngSubmit)="createShelf()">
+                    <h2 class="card-title text-center mb-4">Create Shelf</h2>
 
-    <input placeholder="Shelf name" formControlName="name" />
+                    <form [formGroup]="shelfForm" (ngSubmit)="createShelf()">
 
-    <div *ngIf="shelfForm.get('name')?.touched && shelfForm.get('name')?.invalid">
-        Shelf name is required
+                        <div class="mb-3">
+                            <label class="form-label">Shelf Name</label>
+                            <input class="form-control" formControlName="name" placeholder="Enter shelf name"
+                                [class.is-invalid]="shelfForm.get('name')?.touched
+                                    && shelfForm.get('name')?.invalid" />
+
+                            <div class="invalid-feedback">
+                                Shelf name is required
+                            </div>
+                        </div>
+
+                        <button type="submit" class="btn btn-success w-100" [disabled]="shelfForm.invalid">
+                            Create Shelf
+                        </button>
+
+                    </form>
+
+                    <div *ngIf="message" class="alert alert-info mt-3 text-center">
+                        {{ message }}
+                    </div>
+
+                </div>
+            </div>
+        </div>
     </div>
-
-    <br />
-
-    <button type="submit">Create Shelf</button>
-</form>
-
-<p *ngIf="message">{{ message }}</p>
+</div>
