@@ -1,26 +1,40 @@
-<h2>Find User</h2>
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6 col-lg-5">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <h2 class="card-title text-center mb-4">Find User</h2>
 
-<form [formGroup]="userForm" (ngSubmit)="onSubmit()">
-    <div>
-        <label>Email</label><br />
-        <input type="email" formControlName="email" />
-        <div *ngIf="userForm.get('email')?.touched && userForm.get('email')?.invalid">
-            Enter a valid email
+                    <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+                        <div class="mb-3">
+                            <label class="form-label">Email</label>
+                            <input type="email" class="form-control" formControlName="email" placeholder="Enter email"
+                                [class.is-invalid]="userForm.get('email')?.touched && userForm.get('email')?.invalid" />
+
+                            <div class="invalid-feedback">
+                                Enter a valid email
+                            </div>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary w-100" [disabled]="userForm.invalid">
+                            Get User
+                        </button>
+                    </form>
+
+                    <div *ngIf="errorMessage" class="alert alert-danger mt-3">
+                        {{ errorMessage }}
+                    </div>
+
+                    <hr class="my-4" />
+
+                    <p class="text-center mb-0">
+                        New user?
+                        <a routerLink="/users/create" class="link-primary fw-semibold">
+                            Create User
+                        </a>
+                    </p>
+                </div>
+            </div>
         </div>
     </div>
-
-    <br />
-
-    <button type="submit">Get User</button>
-</form>
-
-<div *ngIf="errorMessage" style="color: red; margin-top: 10px;">
-    {{ errorMessage }}
 </div>
-
-<hr />
-
-<p>
-    New user?
-    <a routerLink="/users/create">Create User</a>
-</p>
