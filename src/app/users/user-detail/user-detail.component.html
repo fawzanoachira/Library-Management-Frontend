@@ -1,24 +1,68 @@
-<h2>User Details</h2>
+<div class="container mt-5">
 
-<div *ngIf="errorMessage" style="color: red;">
-  {{ errorMessage }}
+  <h2 class="text-center mb-4">User Details</h2>
+
+  <div *ngIf="errorMessage" class="alert alert-danger">
+    {{ errorMessage }}
+  </div>
+
+  <div *ngIf="user" class="row justify-content-center">
+    <div class="col-md-8 col-lg-7">
+
+      <!-- User Info Card -->
+      <div class="card shadow-sm mb-4">
+        <div class="card-body">
+          <div class="d-flex justify-content-between align-items-center mb-3">
+            <h5 class="card-title mb-0">Profile</h5>
+            <button class="btn btn-outline-primary btn-sm" (click)="editUser()">
+              ✏️ Edit User
+            </button>
+          </div>
+
+          <div class="row">
+            <div class="col-sm-4 fw-semibold">Name</div>
+            <div class="col-sm-8">{{ user.name }}</div>
+          </div>
+          <hr />
+
+          <div class="row">
+            <div class="col-sm-4 fw-semibold">Email</div>
+            <div class="col-sm-8">{{ user.email }}</div>
+          </div>
+          <hr />
+
+          <div class="row">
+            <div class="col-sm-4 fw-semibold">User ID</div>
+            <div class="col-sm-8">{{ user.id }}</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Actions / Navigation -->
+      <div class="card shadow-sm">
+        <div class="card-body">
+          <h5 class="card-title mb-3">Library Actions</h5>
+
+          <div class="d-flex flex-wrap gap-2">
+            <a routerLink="/books" class="btn btn-outline-secondary">
+              📚 View Books
+            </a>
+
+            <a routerLink="/books/create" class="btn btn-outline-success">
+              ➕ Create Book
+            </a>
+
+            <a [routerLink]="['/shelves/create']" [queryParams]="{ userId: user.id }" class="btn btn-outline-warning">
+              ➕ Create Shelf
+            </a>
+
+            <a routerLink="/shelves" class="btn btn-outline-info">
+              🗂️ View Shelves
+            </a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
 </div>
-
-<div *ngIf="user">
-  <p><strong>Name:</strong> {{ user.name }}</p>
-  <p><strong>Email:</strong> {{ user.email }}</p>
-  <p><strong>ID:</strong> {{ user.id }}</p>
-
-  <button (click)="editUser()">Edit User</button>
-</div>
-<h3>Books</h3>
-
-<a routerLink="/books">📚 View Books</a>
-|
-<a routerLink="/books/create">➕ Create Book</a>
-
-<a [routerLink]="['/shelves/create']"
-   [queryParams]="{ userId: user.id }">
-   ➕ Create Shelf
-</a>
-<a routerLink="/shelves">🗂️ View Shelves</a>
